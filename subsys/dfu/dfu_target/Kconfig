@@ -37,6 +37,14 @@ if DFU_TARGET_MCUBOOT_SAVE_PROGRESS
 	comment "DFU_TARGET_MCUBOOT_SAVE_PROGRESS is deprecated, please use DFU_TARGET_STREAM_SAVE_PROGRESS instead"
 endif
 
+config DFU_TARGET_CUSTOM
+	bool "Custom update support"
+	select DFU_TARGET_STREAM
+	imply MPU_ALLOW_FLASH_WRITE
+	help
+	  Enable support for custom updates e.g. slave mcu.
+
+
 config DFU_TARGET_STREAM_SAVE_PROGRESS
 	bool "Store write progress to flash stream"
 	depends on DFU_TARGET_STREAM || ZTEST # ZTEST for testing purposes
