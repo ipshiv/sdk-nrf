@@ -24,7 +24,12 @@ static struct dfu_target_custom_config target_cfg;
 static uint8_t fota_buf[512];
 static uint8_t *stream_buf = fota_buf;
 static size_t stream_buf_len = sizeof(fota_buf);
+static size_t filesize;
 
+size_t dfu_target_custom_get_filesize(void)
+{
+	return filesize;
+}
 
 int dfu_target_custom_set_config(struct dfu_target_custom_config cfg)
 {
@@ -82,6 +87,8 @@ int dfu_target_custom_init(size_t file_size, dfu_target_callback_t cb)
 		LOG_ERR("dfu_target_stream_init failed %d", err);
 		return err;
 	}
+
+	filesize = file_size;
 
 	return 0;
 }

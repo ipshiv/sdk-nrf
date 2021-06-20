@@ -21,6 +21,8 @@ struct dfu_target_custom_config {
 	dfu_target_custom_secmat_verification_t cb;
 };
 
+size_t dfu_target_custom_get_filesize(void);
+
 int dfu_target_custom_set_config(struct dfu_target_custom_config cfg);
 
 bool dfu_target_custom_identify(const void *const buf);
